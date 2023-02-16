@@ -176,7 +176,7 @@ script.on_event(defines.events.on_gui_click, function(event)
 	if settings.global["qts_language_setting"].value == "qts_internal" then
 		production = "production"
 		eduction = "eduction"
-		fuel = "fuel"
+		fuel = "refuel"
 		plain_station = "station"
 	end
 	if settings.global["qts_language_setting"].value == "qts_player" then
@@ -202,9 +202,9 @@ script.on_event(defines.events.on_gui_click, function(event)
 		local train_stop = event.element.parent["entity-preview"].entity
 		local signal_id = event.element.parent["signal-chooser"].elem_value
         local item_name = get_name_from_signal_id(signal_id)
-        local name =  production 
-        if not item_name == "" then 
-            name =  production  .. " " .. get_name_from_signal_id(signal_id)
+        local name =  production  .. " " .. item_name
+        if item_name == "" then 
+            name =  production 
 		end
 		train_stop.backer_name = name
 		reopen_vanilla_gui(event.player_index,event.tick)
@@ -214,9 +214,9 @@ script.on_event(defines.events.on_gui_click, function(event)
 		local train_stop = event.element.parent["entity-preview"].entity
 		local signal_id = event.element.parent["signal-chooser"].elem_value
         local item_name = get_name_from_signal_id(signal_id)
-        local name = eduction 
-        if not item_name == "" then 
-            local name =  eduction  .. " " .. get_name_from_signal_id(signal_id)
+        local name = eduction .. " " .. item_name
+        if item_name == "" then 
+            name =  eduction  
 		end
         train_stop.backer_name = name
 		reopen_vanilla_gui(event.player_index,event.tick)
