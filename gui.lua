@@ -130,11 +130,11 @@ end)
 
 
 script.on_event(defines.events.on_gui_opened, function(event)
-	if event.gui_type == defines.gui_type.entity and event.entity.name == "locomotive" then
+	if event.gui_type == defines.gui_type.entity and event.entity.type == "locomotive" then
 		add_train_gui(event)
 	end
 
-	if event.gui_type == defines.gui_type.entity and event.entity.name == "train-stop" then
+	if event.gui_type == defines.gui_type.entity and event.entity.type == "train-stop" then
 		add_train_stop_gui(event)
 	end
 end)
@@ -157,6 +157,8 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 
 	end
 end)
+
+
 
 script.on_event(defines.events.on_gui_click, function(event)
 	local production = "x"
@@ -234,6 +236,22 @@ script.on_event(defines.events.on_gui_click, function(event)
 		local signal_id = event.element.parent["signal-chooser"].elem_value
 		
 		local name = get_name_from_signal_id(signal_id)
-		train.schedule = create_new_shedule(train,name)
+		train.schedule = create_new_shedule(train,name,production,eduction)
+	end
+end)
+
+script.on_event(defines.events.on_entity_renamed, function(event)
+	if not event.by_script then
+		if event.player_index then
+			if game.players[event.player_index] then
+				local player = game.players[event.player_index]
+				if player.gui.left["qts_train_stop_gui"] then
+					player.gui.left["qts_train_stop_gui"].destroy() 
+				end
+				if player.gui.left["qts_train_gui"] then
+					player.gui.left["qts_train_gui"].destroy() 
+				end
+			end
+        end
 	end
 end)
