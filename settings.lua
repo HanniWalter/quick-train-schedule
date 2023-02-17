@@ -16,17 +16,19 @@ data:extend(
         type = "bool-setting",
         setting_type = "runtime-global",
         default_value = true
-    },{
-        name = "qts_allow_longer_trains_setting",
-        type = "bool-setting",
-        setting_type = "runtime-global",
-        default_value = false
-    },{
-        name = "qts_allow_shorter_trains_setting",
-        type = "bool-setting",
-        setting_type = "runtime-global",
-        default_value = true
-    },{
+    },
+--    {
+--        name = "qts_allow_longer_trains_setting",
+--        type = "bool-setting",
+--        setting_type = "runtime-global",
+--        default_value = false
+--    },{
+--        name = "qts_allow_shorter_trains_setting",
+--        type = "bool-setting",
+--        setting_type = "runtime-global",
+--        default_value = true
+--    },
+    {
         name = "qts_refuel_refresh_time_setting",
         type = "int-setting",
         setting_type = "runtime-global",
