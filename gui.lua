@@ -36,14 +36,14 @@ function add_train_stop_gui(event)
 
 		train_stop_gui.add({type="button", name="fuel-buttom", caption="fuel", enabled=true,mouse_button_filter ={"left"}})
 
-        --needed to reference the train stop later
-		local entity_preview = train_stop_gui.add({type="entity-preview",name="entity-preview", enabled=false})
+        --dont needed anymore to reference the train stop later
+		--local entity_preview = train_stop_gui.add({type="entity-preview",name="entity-preview", enabled=false})
 	else
 		if fts_preselected and fts_preselected[event.player_index] then
 			game.players[event.player_index].gui.relative.qts_train_stop_gui["signal-chooser"].elem_value = fts_preselected[event.player_index].signal_chooser
 		end
 	end
-	game.players[event.player_index].gui.relative.qts_train_stop_gui["entity-preview"].entity = event.entity
+	--game.players[event.player_index].gui.relative.qts_train_stop_gui["entity-preview"].entity = event.entity
 	game.players[event.player_index].gui.relative.qts_train_stop_gui.table["qts_slider_text1"].text = tostring(global.fts_trainsize[event.player_index][1])
 	game.players[event.player_index].gui.relative.qts_train_stop_gui.table["qts_slider_text2"].text = tostring(global.fts_trainsize[event.player_index][2])
 	game.players[event.player_index].gui.relative.qts_train_stop_gui.table["qts_slider_text3"].text = tostring(global.fts_trainsize[event.player_index][3])
@@ -77,8 +77,8 @@ function add_train_gui(event)
 			train_gui.add({type="choose-elem-button", name="signal-chooser", caption="Quick Train Stop", enabled=true,elem_type ="signal"})
 		end 
 		train_gui.add({type="button", name="confirmed-buttom", caption="Confirm", enabled=true,mouse_button_filter ={"left"}})
-		local entity_preview = train_gui.add({type="entity-preview",name="entity-preview", enabled=false})
-		entity_preview.entity = event.entity
+		--local entity_preview = train_gui.add({type="entity-preview",name="entity-preview", enabled=false})
+		--entity_preview.entity = event.entity
 	else
 		if fts_preselected and fts_preselected[event.player_index] then
 			game.players[event.player_index].gui.relative.qts_train_gui["signal-chooser"].elem_value = fts_preselected[event.player_index].signal_chooser
@@ -189,7 +189,7 @@ script.on_event(defines.events.on_gui_click, function(event)
 	end
 
 	if event.element.name == "empty-buttom" then
-		local train_stop = event.element.parent["entity-preview"].entity
+		local train_stop = game.players[event.player_index].opened
 		local signal_id = event.element.parent["signal-chooser"].elem_value
 		local name = get_name_from_signal_id(signal_id) 
 		if name == "" then
@@ -201,7 +201,7 @@ script.on_event(defines.events.on_gui_click, function(event)
  
 	if event.element.name == "production-buttom" then
 
-		local train_stop = event.element.parent["entity-preview"].entity
+		local train_stop = game.players[event.player_index].opened
 		local signal_id = event.element.parent["signal-chooser"].elem_value
         local item_name = get_name_from_signal_id(signal_id)
         local name =  production  .. " " .. item_name
@@ -213,7 +213,7 @@ script.on_event(defines.events.on_gui_click, function(event)
 
 	end
 	if event.element.name == "eduction-buttom" then
-		local train_stop = event.element.parent["entity-preview"].entity
+		local train_stop = game.players[event.player_index].opened
 		local signal_id = event.element.parent["signal-chooser"].elem_value
         local item_name = get_name_from_signal_id(signal_id)
         local name = eduction .. " " .. item_name
@@ -226,32 +226,33 @@ script.on_event(defines.events.on_gui_click, function(event)
 	end
 
 	if event.element.name == "fuel-buttom" then
-        local train_stop = event.element.parent["entity-preview"].entity
+        local train_stop = game.players[event.player_index].opened
         train_stop.backer_name = fuel .. " " .. get_refuelstation_string(event.player_index)
 		reopen_vanilla_gui(event.player_index,event.tick)
 	end
 
-	if event.element.name == "confirmed-buttom" then
-		local train = event.element.parent["entity-preview"].entity.train
+	if event.element.name == "confirmed-buttom" then	
+		local train = game.players[event.player_index].opened.train
 		local signal_id = event.element.parent["signal-chooser"].elem_value
 		
 		local name = get_name_from_signal_id(signal_id)
+
 		train.schedule = create_new_shedule(train,name,production,eduction)
 	end
 end)
 
-script.on_event(defines.events.on_entity_renamed, function(event)
-	if not event.by_script then
-		if event.player_index then
-			if game.players[event.player_index] then
-				local player = game.players[event.player_index]
-				if player.gui.left["qts_train_stop_gui"] then
-					player.gui.left["qts_train_stop_gui"].destroy() 
-				end
-				if player.gui.left["qts_train_gui"] then
-					player.gui.left["qts_train_gui"].destroy() 
-				end
-			end
-        end
-	end
-end)
+--script.on_event(defines.events.on_entity_renamed, function(event)
+--	if not event.by_script then
+--		if event.player_index then
+--			if game.players[event.player_index] then
+--				local player = game.players[event.player_index]
+--				if player.gui.relative["qts_train_stop_gui"] then
+--					player.gui.relative["qts_train_stop_gui"].destroy() 
+--				end
+--				if player.gui.relative["qts_train_gui"] then
+--					player.gui.relative["qts_train_gui"].destroy() 
+--				end
+--			end
+--        end
+--	end
+--end)
