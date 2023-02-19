@@ -1,6 +1,5 @@
 require "util"
 
---todo
 function get_schedule_with_refueling(train,stopname)
 	local current = train.schedule.current
 	local FuelTrainScheduleRecord = {}
@@ -61,7 +60,6 @@ function does_name_fits(station_name, trainname, shortend)
 	return station_name == trainname
 end
 
---todo
 function get_fitting_station_name(surface,train)
     local station_name = get_refill_string(train)
     local station_name = get_refill_string(train)
