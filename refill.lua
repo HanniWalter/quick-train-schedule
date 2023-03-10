@@ -7,7 +7,15 @@ function get_schedule_with_refueling(train,stopname)
 	FuelTrainScheduleRecord.wait_conditions = {{compare_type="or",type = "inactivity",ticks = 60}}
 	FuelTrainScheduleRecord.temporary = true
 	local records = train.schedule.records
-	table.insert(records,current+1,FuelTrainScheduleRecord)
+	if settings.global["qts_insert"].value == "qts_now" then
+        table.insert(records,current,FuelTrainScheduleRecord)
+    end
+	if settings.global["qts_insert"].value == "qts_next" then
+        table.insert(records,current+1,FuelTrainScheduleRecord)
+    end
+	if settings.global["qts_insert"].value == "qts_last" then
+        table.insert(records,FuelTrainScheduleRecord)
+    end
 	local returner = {}
 	returner.current = current
 	returner.records = records

@@ -33,6 +33,19 @@ data:extend(
 --        default_value = true
 --    },
     {
+        name = "qts_insert",
+        type = "string-setting",
+        allowed_values = {"qts_now","qts_next","qts_last"},
+        setting_type = "runtime-global",
+        default_value = "qts_next",
+        order = "cwb"
+    },{
+        name = "qts_fuel_threshold_value",
+        type = "int-setting",
+        setting_type = "runtime-global",
+        default_value = 300,
+        order = "cwc"
+    },{
         name = "qts_refuel_refresh_time_setting",
         type = "int-setting",
         setting_type = "runtime-global",
