@@ -22,16 +22,28 @@ function get_schedule_with_refueling(train,stopname)
 	return returner
 end
 
---todo
+-- in MJ
+function get_fuel_value(item)
+    return game.item_prototypes[item].fuel_value/1000000
+end
+
 function is_fuel_needed(train)
 	for i,loco in pairs(combine_tables(train.locomotives.front_movers,train.locomotives.back_movers))do
 		loco.get_fuel_inventory().sort_and_merge()
+		local fuelValue = 0
 		--game.print(loco.get_fuel_inventory()[#loco.get_fuel_inventory()].valid_for_read)
 		for i = 1, #loco.get_fuel_inventory() do
-			if not loco.get_fuel_inventory()[i].valid_for_read then 
-				return true
+			local items = loco.get_fuel_inventory()[i]
+			if items.valid_for_read then 
+				local value = get_fuel_value(items.name)
+                local count = items.count
+                fuelValue = fuelValue + value * count
+				--return true
 			end
 		end
+		if fuelValue <= settings.global["qts_fuel_threshold"].value then
+            return true
+        end
 	end
 	return false
 end	

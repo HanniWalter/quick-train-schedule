@@ -40,7 +40,7 @@ data:extend(
         default_value = "qts_next",
         order = "cwb"
     },{
-        name = "qts_fuel_threshold_value",
+        name = "qts_fuel_threshold",
         type = "int-setting",
         setting_type = "runtime-global",
         default_value = 300,
