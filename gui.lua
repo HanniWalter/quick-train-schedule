@@ -154,7 +154,18 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 		if not fts_preselected then fts_preselected = {} end
 		if not fts_preselected[event.player_index] then fts_preselected[event.player_index] = {} end
 		fts_preselected[event.player_index].signal_chooser = event.element.elem_value 
-
+		
+		--dynamic button names
+		if event.element.elem_value then
+			game.players[event.player_index].gui.relative.qts_train_stop_gui["empty-buttom"].caption = {"",event.element.elem_value.name}
+			game.players[event.player_index].gui.relative.qts_train_stop_gui["production-buttom"].caption = {"","production ",event.element.elem_value.name}
+			game.players[event.player_index].gui.relative.qts_train_stop_gui["eduction-buttom"].caption = {"","eduction ",event.element.elem_value.name}
+		else
+			game.players[event.player_index].gui.relative.qts_train_stop_gui["empty-buttom"].caption = {"station"}
+			game.players[event.player_index].gui.relative.qts_train_stop_gui["production-buttom"].caption = {"production"}
+			game.players[event.player_index].gui.relative.qts_train_stop_gui["eduction-buttom"].caption = {"eduction"}
+		end
+		--table["qts_slider_text1"].text = tostring(global.fts_trainsize[event.player_index][1])
 	end
 end)
 
@@ -240,19 +251,3 @@ script.on_event(defines.events.on_gui_click, function(event)
 		train.schedule = create_new_shedule(train,name,production,eduction)
 	end
 end)
-
---script.on_event(defines.events.on_entity_renamed, function(event)
---	if not event.by_script then
---		if event.player_index then
---			if game.players[event.player_index] then
---				local player = game.players[event.player_index]
---				if player.gui.relative["qts_train_stop_gui"] then
---					player.gui.relative["qts_train_stop_gui"].destroy() 
---				end
---				if player.gui.relative["qts_train_gui"] then
---					player.gui.relative["qts_train_gui"].destroy() 
---				end
---			end
---        end
---	end
---end)
