@@ -56,26 +56,3 @@ function has_train_temp_stop(train)
 	return false
 end
 
-
---localisation stuff
-
---localisation_table = localisation_table or {}
---
---function getTranslation(localised_name, player_id)
---
---end
---
---script.on_event(defines.events.on_string_translated, function(event)
---	print(event) 
---
---	--train_stop.backer_name = name
---	--reopen_vanilla_gui(event.player_index,event.tick)
---end)
-
---function setTranslation(localised_name, player_id)
---	game.get_player(player_id).request_translations({qts_production,qts_eduction,qts_fuel,qts_station})
---end
---
---function getPlayerTranslations(player_id)
---	
---end

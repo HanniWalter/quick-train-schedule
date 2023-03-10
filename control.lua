@@ -5,6 +5,7 @@
 require "util"
 require "refill"
 require "gui"
+--require "translator"
 
 function get_name_from_signal_id(signal_id)
 	if signal_id == nil then
