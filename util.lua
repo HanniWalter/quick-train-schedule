@@ -56,3 +56,9 @@ function has_train_temp_stop(train)
 	return false
 end
 
+OUTPUT_FILE = "recipe_dump.txt"
+
+function print_table_to_file(t,filename)
+		local text_format_of_table = serpent.block(t)
+		game.write_file(filename, text_format_of_table)
+end

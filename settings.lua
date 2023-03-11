@@ -4,7 +4,7 @@ data:extend(
         name = "qts_language_setting",
         type = "string-setting",
         setting_type = "runtime-global",
-        allowed_values = {"qts_internal"},
+        allowed_values = {"qts_host","qts_internal"},
         --allowed_values = {"qts_host", "qts_internal", "qts_player"},
         default_value = "qts_internal",
         order = "aaa"

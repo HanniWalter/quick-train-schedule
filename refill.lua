@@ -49,7 +49,7 @@ function is_fuel_needed(train)
 end	
 
 function get_refill_string(train)
-    local full = "refuel "
+    local full = ""
 	local carriages = train.carriages
 	for _,car in pairs(carriages) do 
 		if car.type == "locomotive" then
@@ -62,7 +62,7 @@ function get_refill_string(train)
 end
 
 function get_refill_string_short(train)
-	local full = "refuel "
+	local full = ""
     local shortend = full
 	local carriages = train.carriages
 	for _,car in pairs(carriages) do 
@@ -76,17 +76,29 @@ function get_refill_string_short(train)
 	return shortend
 end
 
+function get_refuel_station_name_train(train)
+	--get_refuelstation_string(event.player_index)
+    if settings.global["qts_language_setting"].value == "qts_internal" then
+		return "refuel".. " " .. get_refill_string(train)
+	end
+	if settings.global["qts_language_setting"].value == "qts_host" then
+		return get_translation(1, {"qts.qts_fuel"}) .. " " .. get_refill_string(train)
+	end	
+	if settings.global["qts_language_setting"].value == "qts_player" then
+		return "not implemented"
+	end
+end
+
 function does_name_fits(station_name, trainname, shortend)
 	return station_name == trainname
 end
 
 function get_fitting_station_name(surface,train)
-    local station_name = get_refill_string(train)
-    local station_name = get_refill_string(train)
+    local station_name = get_refuel_station_name_train(train)
 	local stations = surface.get_train_stops{}
 
 	for _,station in pairs(stations) do 
-		if does_name_fits(station.backer_name, get_refill_string(train), get_refill_string_short(train)) then
+		if does_name_fits(station.backer_name, get_refuel_station_name_train(train), get_refuel_station_name_train(train)) then
 			return station.backer_name
 		end
 	end
@@ -110,7 +122,7 @@ function refuelling_tick(event)
                     train.schedule =get_schedule_with_refueling(train,stopname)
                 else
                     if settings.global["qts_show_not_found_setting"].value == true then
-                        show_flying_text(train, "no refulling station for this train found", {255,0,0}, -2)
+                        show_flying_text(train, "no refulling station for this train found ", {255,0,0}, -2)
                     end    
                 end
             end
