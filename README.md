@@ -1,23 +1,23 @@
-# Quick-Train-Schedule
+*Quick Train Schedule is a mod designed to make the setting up of trains as convenient as possible.*
 
-BETA: Please note that this mod is currently in the first testing phase.
+## Features
 
-Quick Train Schedule is a mod designed to make creating custom train schedules in Factorio easier and faster.
+**Easy Refueling**
 
-## The mod offers the following basic features:
+You can now set a train station as a refuel station, select the number of locomotives and wagons your train has and click "Fuel." The station will receive a new name, and empty locomotives will automatically drive to this location for refueling.
 
-### Fast Station Names
+**Station Names**
 
-With Quick Train Schedule, naming train stations is a breeze. Simply select an item, liquid, or signal in the new GUI located to the left of the train station GUI, and then click on one of three options: "Simple Name," "Production," or "Eduction." The station will then receive a new name based on the item you chose.
+With Quick Train Schedule, naming train stations is a breeze. Simply select an item, liquid, or signal in the GUI located to the right of the train station GUI, and then click on one of three options: "Simple Name", "Production" or "Eduction". The station will then receive a new name based on the item you chose.
 
-### Fast Train Schedule
+**Train Schedule**
 
-Creating a train schedule is just as easy with Quick Train Schedule. Once again, select an item, liquid, or signal in the new GUI, confirm your choice, and the train schedule will automatically change. Your train will now cycle between production and eduction stations for the selected item.
+Creating a train schedule is just as easy. Select "Simple Name" "Production" or "Eduction" and an item, liquid or signal in the GUI to automatically setup the train schedule. Your train will now cycle between production and eduction stations for the selected item.
 
-### Easy Refueling
+*Try Quick Train Schedule now and see how much faster and easier managing your Factorio train system can be!*
 
-Finally, editing your refueling train station is simplified with Quick Train Schedule. Simply select the number of locomotives and wagons your train has and click "Fuel." The station will receive a new name, and nearly empty locomotives will automatically drive to this location for refueling.
+### Planned Features
+ - custom waiting conditions 
 
-Give Quick Train Schedule a try and see how much faster and easier managing your Factorio train system can be!
-
-Acknowledgement: A special thanks to nibuja05 for his valuable contribution to the development of this mod. His efforts have helped me to make Quick Train Schedule a better tool.
+### Acknowledgement: 
+A special thanks to nibuja05 for his valuable contribution to the development of this mod. His efforts have helped me to make Quick Train Schedule a better tool.
